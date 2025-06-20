@@ -1,0 +1,71 @@
+// This file contains a command to check the version of AWS CLI installed on the system.
+aws --version
+
+aws iam list-users
+// This command lists all IAM users in the AWS account.
+
+aws configure
+// This command configures the AWS CLI with your credentials and default region.
+
+//EC2 is a web service that provides resizable compute capacity in the cloud. It is designed to make web-scale cloud computing easier for developers.
+//EC2 is specific to particular regions, so you need to specify the region when using it.
+
+#!/bin/bash
+sudo yum update -y
+
+#install Apache web server
+sudo yum install httpd -y
+sudo systemctl start httpd
+sudo systemctl enable httpd
+
+// Create a simple HTML file to verify the web server is running
+echo "<html><body><h1>Welcome to my EC2 instance!</h1></body></html>"> 
+/var/www/html/index.html
+
+//EBS
+lsblk
+// 
+
+//Access snapshot data from other 
+sudo file -s /dev/nvmelnlpl
+// List all block devices to see available EBS volumes
+
+sudo mkdir /mnt/mybackup
+// Mount the EBS volume to the directory
+
+sudo mount -o nouuid  /dev/xvdb1 /mnt/mybackup
+// Mount the EBS volume to the specified directory
+
+df -h
+// Display disk space usage to verify the EBS volume is mounted correctly
+
+
+sudo umount -l  /mnt/mybackup
+// Unmount the EBS volume when done
+
+
+//AWS ELB & ASG 
+#!/bin/bash
+sudo yum update -y
+
+# Install Apache web server
+sudo yum install httpd -y
+sudo systemctl start httpd
+sudo systemctl enable httpd
+# Create a simple HTML file to verify the web server is running
+echo "<html><body><h1>Welcome to Apache Web Server on Amazon Linux - ${hostname}!</h1></
+body></html>" > /var/www/html/index.html
+
+#RDS 
+sudo yum install docker -y
+
+sudo systemctl start docker
+
+sudo systemctl status docker
+
+sudo docker pull philippaul/node-mysql-app:02
+
+sudo docker run --rm -p 80:3000 -e DB_HOST="database-2.c9oiq8iuu46d.ap-south-1.rds.amazonaws.com" -e DB_USER="admin" -e DB_PASS="Abcd12345" -d philippaul/node-mysql-app:02
+
+
+dynamoDB is serverless - means you don't have to manage the underlying infrastructure. It automatically scales up and down based on your application's needs.
