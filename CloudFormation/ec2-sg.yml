@@ -1,0 +1,36 @@
+Resources:
+  SimpleEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0747810cb079f2bcc # Example AMI ID, replace with a valid one
+      InstanceType: t3.micro
+      Tags:
+        - Key: Name
+          Value: SimpleEC2Instance
+      SecurityGroupIds:
+        - !Ref InstanceSecurityGroup
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          yum update -y
+          yum install -y nginx
+          systemctl start nginx
+
+          #create a simple index.html file
+          echo "<html><body><h1>Hello from EC2 Instance Nginx</h1></body></html>" >
+           /usr/share/nginx/html/index.html
+
+  InstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable HTTP access
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0 # Allow HTTP access from anywhere
+
+  ElasticIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      InstanceId: !Ref SimpleEC2Instance
